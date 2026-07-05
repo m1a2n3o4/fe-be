@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: feedback-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      # Secrets — set these in the Render dashboard (sync: false keeps them out of git).
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
